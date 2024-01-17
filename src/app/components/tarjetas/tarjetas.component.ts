@@ -34,30 +34,23 @@ export class TarjetasComponent implements OnInit {
 
   details(tarjeta: Tarjeta): void {
     this.tarjetaElegida = tarjeta;
-    console.log('tarjeta elegida', this.tarjetaElegida);
-    console.log('url', this.tarjetaElegida.episode);
 
     for(var i = 0; i < this.tarjetaElegida.episode.length; i++){
       var url = this.tarjetaElegida.episode[i].toString();
       this.aux = this.obtenerId(url);
-      //console.log('bucle',this.aux);
       this.auxInt = parseInt(this.aux);
-      //console.log('bucle',this.aux);
       this.idEpisodios.push(this.auxInt);
     }
   
-    console.log('lista indices',this.idEpisodios);
     this.rickService.getEpisode(this.idEpisodios).subscribe(
       response => {
         this.episodios = response;
-        console.log('lista episodios',  this.episodios);
       }
     )
   }
 
   obtenerId(url: string): string {
     var id = url.substring(40);
-    //console.log('AUX',id);
     return id;
   }
 

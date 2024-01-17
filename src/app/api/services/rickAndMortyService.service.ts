@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Tarjeta } from '../models/tarjeta';
+import { EMPTY, Observable, catchError, map } from 'rxjs';
+import { ResponseInfoResults, Tarjeta } from '../models/tarjeta';
 import { Episode } from '../models/episode';
 
 @Injectable({
@@ -20,4 +20,13 @@ export class RickYMortyService {
     const url = this.urlEndpoint+'/episode/'+id;
     return this.http.get<Episode[]>(url);
   }
+
+  filterCharacter(name: string): Observable<Tarjeta[]>{
+    const API = `https://rickandmortyapi.com/api/character/?name=${name}`;
+    return this.http.get<ResponseInfoResults>(API).pipe(
+      map((res: ResponseInfoResults) => res?.results),
+      catchError(() => EMPTY)
+    );
+  }
+  
 }

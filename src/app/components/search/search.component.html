@@ -1,0 +1,71 @@
+<div class="flex items-center justify-center">
+    <form class="w-11/12 mt-5 mb-5">
+        <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        </div>
+        <input type="search" id="default-search" (input)="search($event)"
+          class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search by name..." required>
+      </div>
+    </form>
+  </div>
+  <div class="grid grid-cols-4 gap-4">
+    <div class="p-4 rounded-lg shadow-md" *ngFor="let character of characters$ | async">
+      <div class="row m-0 d-flex justify-content-center flex-wrap">
+        <div class="card m-2 col-3" style="width: 18rem;">
+          <img src="{{character.image}}" class="card-img-top" alt="Characters images">
+          <div class="card-body">
+            <h2 class="card-title"><b>{{character.name}}</b></h2>
+            <p class="card-text"><b>Status: </b>{{character.status}}</p>
+            <p class="card-text"><b>Origin: </b>{{character.origin.name}}</p>
+          </div>
+          <a href="#" class="btn btn-primary m-3" (click)="details(character)">Details</a>
+        </div>
+      </div>
+    </div>  
+    <ng-template  [ngIf]="tarjetaElegida != null">
+      <div class="row m-3 d-flex justify-content-center flex-wrap">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <h2 class="card-title"><b>{{tarjetaElegida.name}}</b></h2>
+              <img src="{{tarjetaElegida.image}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <p class="card-text"><b>Status: </b>{{tarjetaElegida.name}}</p>
+                <p class="card-text"><b>Gender: </b>{{tarjetaElegida.gender}}</p>
+                <p class="card-text"><b>Origin: </b>{{tarjetaElegida.origin.name}}</p>
+                <p class="card-text"><b>Species: </b>{{tarjetaElegida.species}}</p>
+              </div>
+            </div>
+            <div class="row m-3 d-flex justify-content-center flex-wrap">
+              <div class="card-footer d-flex flex-wrap">
+                <p><b>Episodios dónde apareció</b></p>
+                <div class="card m-2 col-1 d-flex" style="width: 12rem;" *ngFor="let item of episodios">
+                  <div class="card-body" >
+                    <p class="card-text">{{item.name}}</p>
+                    <p class="card-text"><b>Episodio: </b>{{item.episode}}</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="row m-0 d-flex justify-content-center flex-wrap">
+              <p><b>Personajes interesantes</b></p>
+                
+                  <div *ngFor="let s of lista | slice:0:3; let i=index" class="card m-2 col-3" style="width: 18rem;">
+                    <img src="{{s.image}}" class="card-img-top" alt="Interesting characters images">
+                    <div class="card-body">
+                      <h2 class="card-title"><b>{{s.name}}</b></h2>
+                      <p class="card-text"><b>Status: </b>{{s.status}}</p>
+                      <p class="card-text"><b>Origin: </b>{{s.origin.name}}</p>
+                    </div>
+                  </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+</div>

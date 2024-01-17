@@ -7,13 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { RickYMortyService } from './api/services/rickAndMortyService.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FilterComponent } from './components/filter/filter.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TarjetasComponent,
-    FilterComponent
+    SearchComponent
   ],
   imports: [
     BrowserModule,

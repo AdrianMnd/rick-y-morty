@@ -19,3 +19,15 @@ export class Origin {
     name: string;
     url: string;
 }
+
+export interface ResponseInfoResults {
+    info: Info;
+    results: Tarjeta[];
+  }
+
+  export interface Info {
+    count: number;
+    pages: number;
+    next: string;
+    prev?: any;
+  }

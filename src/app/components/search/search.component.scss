@@ -1,0 +1,19 @@
+section.search__container {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    margin: 1rem auto;
+    align-content: center;
+    padding: 1rem;
+    background: rgb(250, 246, 246);
+    border-radius: 0.5rem;
+
+    .search__name {
+        width: 100%;
+    }
+
+    .search__input {
+        width: 100%;
+    }
+}
