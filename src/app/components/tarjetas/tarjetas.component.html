@@ -1,0 +1,56 @@
+<div class="row m-0 d-flex justify-content-center flex-wrap">
+  <div *ngFor="let t of lista | paginate: { itemsPerPage: 6, currentPage: page }" class="card m-2 col-3" style="width: 18rem;">
+    <img src="{{t.image}}" class="card-img-top" alt="Characters images">
+    <div class="card-body">
+      <h2 class="card-title"><b>{{t.name}}</b></h2>
+      <p class="card-text"><b>Status: </b>{{t.status}}</p>
+      <p class="card-text"><b>Origin: </b>{{t.origin.name}}</p>
+    </div>
+    <a href="#" class="btn btn-primary m-3" (click)="details(t)">Details</a>
+  </div>
+</div>
+
+<ng-template  [ngIf]="tarjetaElegida != null">
+  <div class="row m-3 d-flex justify-content-center flex-wrap">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <h2 class="card-title"><b>{{tarjetaElegida.name}}</b></h2>
+          <img src="{{tarjetaElegida.image}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text"><b>Status: </b>{{tarjetaElegida.name}}</p>
+            <p class="card-text"><b>Gender: </b>{{tarjetaElegida.gender}}</p>
+            <p class="card-text"><b>Origin: </b>{{tarjetaElegida.origin.name}}</p>
+            <p class="card-text"><b>Species: </b>{{tarjetaElegida.species}}</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card-footer m-3">
+            <p><b>Episodios dónde apareció</b></p>
+            <div class="card m-1 col-1" style="width: 12rem;" *ngFor="let item of episodios">
+              <div class="card-body" >
+                <p class="card-text">{{item.name}}</p>
+                <p class="card-text"><b>Episodio: </b>{{item.episode}}</p>
+              </div>
+            </div>
+            <p><b>Personajes interesantes</b></p>
+            <div class="row m-0 d-flex justify-content-center flex-wrap">
+              <div *ngFor="let s of lista | slice:0:3; let i=index" class="card m-2 col-3" style="width: 18rem;">
+                <img src="{{s.image}}" class="card-img-top" alt="Characters images">
+                <div class="card-body">
+                  <h2 class="card-title"><b>{{s.name}}</b></h2>
+                  <p class="card-text"><b>Status: </b>{{s.status}}</p>
+                  <p class="card-text"><b>Origin: </b>{{s.origin.name}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
